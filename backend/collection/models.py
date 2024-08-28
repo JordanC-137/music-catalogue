@@ -6,4 +6,4 @@ class Artist(models.Model):
 
 class Album(models.Model):
     title = models.TextField(max_length=200)
-    artist = models.ForeignKey(Artist)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
