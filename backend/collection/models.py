@@ -7,3 +7,9 @@ class Artist(models.Model):
 class Album(models.Model):
     title = models.TextField(max_length=200)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+    period = models.ForeignKey("Period", null=True, blank=True, on_delete=models.SET_NULL)
+
+class Period(models.Model):
+    name = models.TextField(max_length = 200)
+    description = models.TextField()
+    color = models.TextField(max_length=6)
