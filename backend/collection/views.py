@@ -16,8 +16,7 @@ def album_list(request, format=None):
         serializer = AlbumSerializer(albums, many = True)
         return Response(serializer.data)
     elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = AlbumSerializer(data=data)
+        serializer = AlbumSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
