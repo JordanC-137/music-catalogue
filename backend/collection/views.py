@@ -6,39 +6,15 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 
+from rest_framework import generics
+
 from collection.models import Album
 from collection.serializers import AlbumSerializer
 
-@api_view(['GET', 'POST'])
-def album_list(request, format=None):
-    if request.method == 'GET':
-        albums = Album.objects.all()
-        serializer = AlbumSerializer(albums, many = True)
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        serializer = AlbumSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class AlbumList(generics.ListCreateAPIView):
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
 
-@api_view(['GET', 'PUT', 'DELETE'])
-def album_detail(request, pk, format=None):
-    try:
-        album = Album.objects.get(pk=pk)
-    except album.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-    
-    if request.method == 'GET':
-        serializer = AlbumSerializer(album)
-        return Response(serializer.data)
-    elif request.method == 'PUT':
-        data = JSONParser().parse(request)
-        serializer = AlbumSerializer(album, data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'DELETE':
-        album.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+class AlbumDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
