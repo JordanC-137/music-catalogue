@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from django.http import Http404
 from rest_framework import generics, status
 
-from collection.models import Album
-from collection.serializers import AlbumSerializer
+from collection.models import Album, Rating
+from collection.serializers import AlbumSerializer, RatingSerializer
 
 class AlbumList(generics.ListCreateAPIView):
     queryset = Album.objects.all()
@@ -31,3 +31,9 @@ class AlbumDetail(APIView):
         album = self.get_object(pk)
         album.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class RatingList(APIView):
+    def get(self, request, format=None):
+        ratings = Rating.objects.filter(user_id=request.user.id)
+        serializer = RatingSerializer(ratings, many=True)
+        return Response(serializer.data)

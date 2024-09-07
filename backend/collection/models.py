@@ -29,7 +29,7 @@ class Period(models.Model):
 class Rating(models.Model):
     stars = models.IntegerField()
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user_id = models.IntegerField()
 
     class Meta:
         constraints = [
