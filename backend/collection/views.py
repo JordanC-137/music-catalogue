@@ -38,7 +38,11 @@ class RatingList(APIView):
         serializer = RatingSerializer(ratings, many=True)
         return Response(serializer.data)
 
-"""
+#TODO figure out how to restrict user to only post their own value, maybe add extra value to RatingSerializer constructor
     def post(self, request, format=None):
         serializer = RatingSerializer(data = request.data)
-"""
+        if serializer.is_valid():
+            serializer.save()
+            print("Saved")
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
