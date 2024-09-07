@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from collection.models import Artist, Album
+from collection.models import Artist, Album, Rating
+from django.contrib.auth.models import User
 
 class AlbumSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,11 +12,10 @@ class ArtistSerializer(serializers.ModelSerializer):
         model = Artist
         fields = ['id', 'name']
 
-#TODO currently trying to understand how to serialize foriegn key object for creating new Rating with user pre-selected
 class RatingSerializer(serializers.Serializer):
-    stars = serializers.IntegerField(read_only=True)
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
-    album = serializers.PrimaryKeyRelatedField(read_only=True)
+    stars = serializers.IntegerField()
+    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    album = serializers.PrimaryKeyRelatedField(queryset=Album.objects.all())
 
-    #user_id = serializers.IntegerField(read_only=True)
-    #album_id = serializers.IntegerField(read_only=True)
+    def create(self, validated_data):
+        return Rating.objects.create(**validated_data)
