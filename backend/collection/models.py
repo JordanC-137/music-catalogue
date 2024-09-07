@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Q
 from django.conf import settings
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Artist(models.Model):
@@ -29,7 +30,7 @@ class Period(models.Model):
 class Rating(models.Model):
     stars = models.IntegerField()
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
-    user_id = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         constraints = [

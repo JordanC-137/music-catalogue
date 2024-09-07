@@ -37,3 +37,8 @@ class RatingList(APIView):
         ratings = Rating.objects.filter(user_id=request.user.id)
         serializer = RatingSerializer(ratings, many=True)
         return Response(serializer.data)
+
+"""
+    def post(self, request, format=None):
+        serializer = RatingSerializer(data = request.data)
+"""
