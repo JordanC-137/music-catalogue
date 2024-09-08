@@ -14,7 +14,6 @@ class ArtistSerializer(serializers.ModelSerializer):
 
 class RatingSerializer(serializers.Serializer):
     stars = serializers.IntegerField()
-    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     album = serializers.PrimaryKeyRelatedField(queryset=Album.objects.all())
 
     def create(self, validated_data):
