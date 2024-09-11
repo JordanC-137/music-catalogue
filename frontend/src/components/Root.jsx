@@ -1,13 +1,11 @@
 import { Outlet } from "react-router-dom";
+import Sidebar from "./Sidebar";
 
 export default function Root(){
     return (
         <>
-            <div className="sidebar">
-                <p>Sidebar placeholder</p>
-            </div>
+            <Sidebar />
             <section className="main-component">
-                <h1>Music Catalogue</h1>
                 <Outlet />
             </section>
         </>
