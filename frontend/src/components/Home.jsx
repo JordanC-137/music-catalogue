@@ -17,9 +17,10 @@ export async function loader(){
 
 export default function Home(){
     const values = useLoaderData();
+    const cards = values.map((x) => <Card key = {x.id} value = {x}/>);
     return (
         <div className="flex-container">
-            {values.map((x) => <Card key = {x.id} value = {x}/>)}
+            {cards}
         </div>
     );
 }

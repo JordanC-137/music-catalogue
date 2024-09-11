@@ -1,13 +1,17 @@
-html {
-	background-color: rgb(170, 165, 165);
+body {
+	background-color: #FCF6F5;
+	margin: 0;
 }
 
 .sidebar {
+	display: flex;
+	flex-direction: column;
 	height: 100%;
 	width: 200px;
 	position: absolute;
-	background-color: #FFFDD0;
 	height: 100%;
+	background-color: #990011;
+	color: #FCF6F5;
 }
 
 .main-component {
