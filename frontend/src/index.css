@@ -14,7 +14,11 @@ html {
 	margin-left: 250px;
 }
 
-.Card{
+.card-div{
 	height: 100px;
-	width: 100px;
+	margin: 10px;
+}
+
+.flex-container{
+	display: flex;
 }
