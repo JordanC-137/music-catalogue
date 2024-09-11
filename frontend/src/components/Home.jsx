@@ -2,6 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useLoaderData } from 'react-router-dom';
 
+import Card from './Card';
+
 /*
 async function getList(){
     const x = await axios.get('http://127.0.0.1:8000/collection/');
@@ -15,10 +17,9 @@ export async function loader(){
 
 export default function Home(){
     const values = useLoaderData();
-    console.log(values);
     return (
         <>
-            {values.map((x) => <li>{x.title}</li>)}
+            {values.map((x) => <li key = {x.id}>{x.title}</li>)}
         </>
     );
 }

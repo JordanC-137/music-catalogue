@@ -13,3 +13,8 @@ html {
 .main-component {
 	margin-left: 250px;
 }
+
+.Card{
+	height: 100px;
+	width: 100px;
+}
