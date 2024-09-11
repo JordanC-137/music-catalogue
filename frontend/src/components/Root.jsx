@@ -7,7 +7,7 @@ export default function Root(){
                 <p>Sidebar placeholder</p>
             </div>
             <section className="main-component">
-                <h1>Root component</h1>
+                <h1>Music Catalogue</h1>
                 <Outlet />
             </section>
         </>

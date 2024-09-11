@@ -1,5 +1,7 @@
-export default function Card(){
+export default function Card(prop){
     return (
-        <p>Individual Card</p>
+        <div className = 'card-div'>
+            <h3>{ prop.title }</h3>
+        </div>
     );
 }
