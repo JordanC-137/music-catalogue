@@ -12,9 +12,16 @@ class ArtistSerializer(serializers.ModelSerializer):
         model = Artist
         fields = ['id', 'name']
 
+"""
 class RatingSerializer(serializers.Serializer):
     stars = serializers.IntegerField()
     album = serializers.PrimaryKeyRelatedField(queryset=Album.objects.all())
 
     def create(self, validated_data):
         return Rating.objects.create(**validated_data)
+"""
+
+class RatingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rating
+        fields = ['album', 'stars']
