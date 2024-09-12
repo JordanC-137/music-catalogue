@@ -11,30 +11,11 @@ class AlbumList(generics.ListCreateAPIView):
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
 
-class AlbumDetail(APIView):
-    def get_object(self, pk):
-        try:
-            return Album.objects.get(pk=pk)
-        except Album.DoesNotExist:
-            raise Http404
-        
-    def get(self, request, pk, format = None):
-        album = self.get_object(pk)
-        serializer = AlbumSerializer(album)
-        return Response(serializer.data)
+class AlbumDetail(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = AlbumSerializer
 
-    def put(self, request, pk, format=None):
-        #Get album and check for relevant rating
-        album = self.get_object(pk)
-        serializer = AlbumSerializer(album, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-
-    def delete(self, request, pk, format=None):
-        album = self.get_object(pk)
-        album.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    def get_queryset(self):
+        return Album.objects.all()
 
 class RatingList(generics.ListCreateAPIView):
     serializer_class = RatingSerializer
