@@ -26,6 +26,10 @@ class AlbumDetail(APIView):
     def put(self, request, pk, format=None):
         #Get album and check for relevant rating
         album = self.get_object(pk)
+        serializer = AlbumSerializer(album, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
 
     def delete(self, request, pk, format=None):
         album = self.get_object(pk)
@@ -40,3 +44,10 @@ class RatingList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         return serializer.save(user = self.request.user)
+
+#TODO On update, should only be able to number of stars
+class RatingDetail(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = RatingSerializer
+
+    def get_queryset(self):
+        return Rating.objects.all()
