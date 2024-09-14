@@ -26,7 +26,6 @@ class RatingList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         return serializer.save(user = self.request.user)
 
-#TODO On update, should only be able to number of stars
 class RatingDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = RatingSerializer
 
