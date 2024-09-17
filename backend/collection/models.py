@@ -26,6 +26,15 @@ class Period(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def save(self, generate_description=False):
+        #If True, use ChatGPT to auto generate a brief summary of the musical period
+        if generate_description:
+            print("Description generating")
+        super().save()
+
+
+
 
 class Rating(models.Model):
     stars = models.IntegerField()
