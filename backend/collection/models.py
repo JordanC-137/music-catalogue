@@ -20,10 +20,11 @@ class Album(models.Model):
     def __str__(self):
         return self.title
 
-    def save(get_rym_rating=False):
+    def save(self, get_rym_rating=False):
         if get_rym_rating:
             message = "To be sent to ChatGPT"
-            print(messge)
+            print(message)
+        super().save()
 
 class Period(models.Model):
     name = models.TextField(max_length = 200)
