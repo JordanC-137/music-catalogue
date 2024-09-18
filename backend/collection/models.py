@@ -3,6 +3,8 @@ from django.db.models import Q
 from django.conf import settings
 from django.contrib.auth.models import User
 
+from openai import OpenAI
+
 # Create your models here.
 class Artist(models.Model):
     name = models.TextField(max_length=200)
@@ -30,8 +32,19 @@ class Period(models.Model):
     
     def save(self, generate_description=False, *args, **kwargs):
         #If True, use ChatGPT to auto generate a brief summary of the musical period
-        if generate_description:
-            print("Description generating")
+        if generate_description and not self.description:
+            request_content = f"""Tell me about the {self.name} period of music
+                                and some key musicians in under 50 words"""
+            
+            client = OpenAI()
+            completion = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages = [
+                    {"role": "user", "content": request_content}
+                ]
+            )
+            response = completion.choices[0].message.content
+            self.description = response
         super().save(*args, **kwargs)
 
 class Rating(models.Model):
