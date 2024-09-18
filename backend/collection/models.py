@@ -17,8 +17,7 @@ class Album(models.Model):
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     release_date = models.DateField(null=True, blank=True)
     period = models.ForeignKey("Period", null=True, blank=True, on_delete=models.SET_NULL)
-    rym_rating = models.IntegerField(null=True, blank=True)
-
+    
     def __str__(self):
         return self.title
 
