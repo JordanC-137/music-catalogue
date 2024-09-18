@@ -13,18 +13,18 @@ class Artist(models.Model):
 class Album(models.Model):
     title = models.TextField(max_length=200)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
-    year = models.DateField(null=True, blank=True)
+    release_date = models.DateField(null=True, blank=True)
     period = models.ForeignKey("Period", null=True, blank=True, on_delete=models.SET_NULL)
     rym_rating = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.title
 
-    def save(self, get_rym_rating=False):
+    def save(self, get_rym_rating=False, *args, **kwargs):
         if get_rym_rating:
             message = "To be sent to ChatGPT"
             print(message)
-        super().save()
+        super().save(*args, **kwargs)
 
 class Period(models.Model):
     name = models.TextField(max_length = 200)
@@ -34,14 +34,11 @@ class Period(models.Model):
     def __str__(self):
         return self.name
     
-    def save(self, generate_description=False):
+    def save(self, generate_description=False, *args, **kwargs):
         #If True, use ChatGPT to auto generate a brief summary of the musical period
         if generate_description:
             print("Description generating")
-        super().save()
-
-
-
+        super().save(*args, **kwargs)
 
 class Rating(models.Model):
     stars = models.IntegerField()
