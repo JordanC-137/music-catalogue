@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class AlbumSerializer(serializers.ModelSerializer):
     class Meta:
         model = Album
-        fields = ['id', 'title', 'artist', 'rym_rating']
+        fields = ['id', 'title', 'artist']
 
 class ArtistSerializer(serializers.ModelSerializer):
     class Meta:
