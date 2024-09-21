@@ -8,7 +8,9 @@ export default function Card({value}){
         <Link className="card-link" to={`collection/${value.id}`}>
         <div className = 'card-div'>
             <img className="card-thumbnail" src={imgPath}></img>
-            <p className="card-title">{ value.title }</p>
+            <div className="card-title-div">
+              <p className="card-title">{ value.title }</p>
+            </div>
         </div>
         </Link>
     );

@@ -18,21 +18,10 @@ body {
 	margin-left: 250px;
 }
 
-.card-div{
-	height: 250px;
-	width: 200px;
-	margin: 10px;
-	border-style:solid;
-	border-radius: 7%;
-	color: #990011;
-}
-
 .flex-container{
 	display: flex;
 	flex-flow: wrap;
 }
-
-
 
 Link:visited {
 	text-decoration: none;
