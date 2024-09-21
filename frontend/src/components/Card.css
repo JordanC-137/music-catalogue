@@ -1,0 +1,13 @@
+.card-link {
+    text-decoration: none;
+}
+
+.card-thumbnail {
+	height: 200px;
+	border-top-left-radius: 7%;
+	border-top-right-radius: 7%;
+}
+
+.card-title {
+    font-size: 1em;
+}

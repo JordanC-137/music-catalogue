@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
+import './Card.css';
+
 
 export default function Card({value}){
     const imgPath = `../images/album_${value.id}.jpg`;
     return (
-        <Link to={`collection/${value.id}`}>
+        <Link className="card-link" to={`collection/${value.id}`}>
         <div className = 'card-div'>
-            <img className="thumbnail" src={imgPath}></img>
-            <h3>{ value.title }</h3>
+            <img className="card-thumbnail" src={imgPath}></img>
+            <p className="card-title">{ value.title }</p>
         </div>
         </Link>
     );

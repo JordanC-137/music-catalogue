@@ -24,6 +24,7 @@ body {
 	margin: 10px;
 	border-style:solid;
 	border-radius: 7%;
+	color: #990011;
 }
 
 .flex-container{
@@ -31,6 +32,9 @@ body {
 	flex-flow: wrap;
 }
 
-.thumbnail {
-	height: 200px;
+
+
+Link:visited {
+	text-decoration: none;
+	background-color: #990011;
 }
