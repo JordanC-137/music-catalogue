@@ -12,8 +12,7 @@ export default function Album(){
     return (
         <>
             <img className="mainImage" src={imgPath}></img>
-
-            <h1>{album.title}</h1>
+            <h1 className="albumTitle">{album.title}</h1>
         </>
     );
 }

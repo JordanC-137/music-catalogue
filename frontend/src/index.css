@@ -1,3 +1,8 @@
+* {
+	padding:0;
+	margin: 0;
+}
+
 body {
 	background-color: #FCF6F5;
 	margin: 0;
@@ -26,4 +31,14 @@ body {
 Link:visited {
 	text-decoration: none;
 	background-color: #990011;
+}
+
+.mainImage {
+	position: absolute;
+	top: 50px;
+	right: 50px;
+	border-radius: 5%;
+}
+
+.albumTitle {
 }
